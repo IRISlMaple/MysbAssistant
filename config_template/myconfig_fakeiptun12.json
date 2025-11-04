@@ -4,13 +4,7 @@
 
 "servers": [
 
-{"tag": "local_1", "type": "udp", "server": "180.168.255.18"},
-
-{"tag": "local_2", "type": "udp", "server": "116.228.111.118"},
-
-{"tag": "local_3", "type": "udp", "server": "223.5.5.5"},
-
-{"tag": "local", "type": "selector", "outbounds": ["local_1", "local_2", "local_3"], "strategy": "prefer_fastest"},
+{"tag": "local", "type": "udp", "server": "180.168.255.18"},
 
 {"tag": "public", "type": "https", "server": "dns.alidns.com", "domain_resolver": "local"},
 
