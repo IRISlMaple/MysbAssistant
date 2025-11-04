@@ -2,8 +2,8 @@
   "dns": {
     "servers": [
       {"tag": "local", "type": "udp", "server": "180.168.255.18"},
-      {"tag": "public", "type": "https", "server": "https://dns.alidns.com/dns-query", "domain_resolver": "local"},
-      {"tag": "foreign", "type": "https", "server": "https://dns.cloudflare.com/dns-query", "detour": "🚀 默认代理", "domain_resolver": "local"},
+      {"tag": "public", "type": "https", "server": "dns.alidns.com", "domain_resolver": "local"},
+      {"tag": "foreign", "type": "https", "server": "dns.cloudflare.com", "detour": "🚀 默认代理", "domain_resolver": "local"},
       {"tag": "fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18"}
     ],
     "rules": [
