@@ -1,12 +1,14 @@
 {
   "dns": {
     "servers": [
+      {"tag": "block", "type": "hosts", "path": [], "predefined": {}},
       {"tag": "local", "type": "udp", "server": "180.168.255.18"},
       {"tag": "public", "type": "https", "server": "dns.alidns.com", "domain_resolver": "local"},
       {"tag": "foreign", "type": "https", "server": "1.1.1.1", "detour": "🚀 默认代理"},
       {"tag": "fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "fc00::/18"}
     ],
     "rules": [
+      {"rule_set": ["adblockfilters", "anti-AD"], "server": "block"},
       {"clash_mode": "direct", "server": "local"},
       {"clash_mode": "global", "server": "fakeip"},
       {"domain_suffix": ["services.googleapis.cn", "googleapis.cn", "xn--ngstr-lra8j.com"], "server": "foreign"},
@@ -52,6 +54,7 @@
       {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"]},
       {"type": "logical", "mode": "or", "rules": [{"port": 53}, {"protocol": "dns"}], "action": "hijack-dns"},
       {"ip_is_private": true, "outbound": "🎯 全球直连"},
+      {"rule_set": ["adblockfilters", "anti-AD"], "action": "reject"},
       {"clash_mode": "direct", "outbound": "🎯 全球直连"},
       {"clash_mode": "global", "outbound": "GLOBAL"},
       {"rule_set": "maplesite-direct", "outbound": "🎯 全球直连"},
@@ -80,6 +83,8 @@
       {"rule_set": "geoip-cn", "outbound": "🎯 全球直连"}
     ],
     "rule_set": [
+      {"tag": "adblockfilters", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksingbox.srs", "download_detour": "🎯 全球直连"},
+      {"tag": "anti-AD", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/privacy-protection-tools/anti-ad.github.io/master/docs/anti-ad-sing-box.srs", "download_detour": "🎯 全球直连"},
       {"tag": "maplesite-direct", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/IRISlMaple/MysbAssistant/refs/heads/main/rules/maplesite-direct.srs", "download_detour": "🎯 全球直连"},
       {"tag": "geosite-ai", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-!cn.srs", "download_detour": "🎯 全球直连"},
       {"tag": "geosite-youtube", "type": "remote", "format": "binary", "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs", "download_detour": "🎯 全球直连"},
@@ -140,7 +145,7 @@
       "store_fakeip": true
     },
     "clash_api": {
-      "external_controller": "0.0.0.0:9095",
+      "external_controller": "0.0.0.0:9090",
       "external_ui": "/etc/sing-box/ui",
       "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
       "external_ui_download_detour": "🎯 全球直连",
